@@ -52,7 +52,8 @@ newGameButton.addEventListener("click", function() {
   newGameButton.style.display = "none";
   hitButton.style.display = "inline";
   stayButton.style.display = "inline";
-  showStatus();
+  checkForEndOfGame();
+    showStatus();
 });
 
 hitButton.addEventListener("click", function() {
@@ -149,7 +150,12 @@ function updateScores() {
 function checkForEndOfGame() {
   
   updateScores();
-  
+    
+  if (playerScore === 21) {
+      playerWon = true;
+      gameOver = true;
+  }
+    
   if (gameOver) {
     // let dealer take cards
     while(dealerScore < playerScore && playerScore <= 21 && dealerScore <= 18) {
@@ -168,7 +174,7 @@ function checkForEndOfGame() {
   }
   else if (gameOver) {
     
-    if (playerScore > dealerScore) {
+    if (playerScore >= dealerScore) {
       playerWon = true;
     }
     else {
